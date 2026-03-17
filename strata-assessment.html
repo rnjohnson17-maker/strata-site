@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Decision Overload Assessment | Strata</title>
+<meta name="description" content="7 questions. Under 3 minutes. Find out what is driving the competing demands in your business and get a personalized recommendation for what to do next.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Lato:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0d1a2e;
+    --navy-mid: #1a2d4a;
+    --gold: #b8922a;
+    --gold-light: #c9a84c;
+    --gold-muted: #9a7a22;
+    --cream: #f5f0e6;
+    --white: #ffffff;
+    --light-bg: #faf9f7;
+    --gray: #888;
+    --gray-light: rgba(245,240,230,0.7);
+    --text-body: #2c2c2c;
+    --border-light: #e8e4dc;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 16px; -webkit-font-smoothing: antialiased; }
+  body { font-family: 'Lato', sans-serif; background: var(--light-bg); color: var(--text-body); min-height: 100vh; }
+
+  /* NAV */
+  .site-nav { background: var(--navy); padding: 1.2rem 3rem; display: flex; align-items: center; justify-content: space-between; }
+  .nav-logo { font-family: 'Lato', sans-serif; font-size: 0.8rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--cream); text-decoration: none; }
+  .nav-back { font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(245,240,230,0.5); text-decoration: none; }
+  .nav-back:hover { color: var(--cream); }
+
+  /* LAYOUT */
+  .page-wrap { max-width: 720px; margin: 0 auto; padding: 4rem 2rem 6rem; }
+
+  /* COVER */
+  .cover { text-align: center; padding: 1rem 0 2rem; }
+  .cover-tag { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; }
+  .cover-title { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 400; color: var(--navy); line-height: 1.25; margin-bottom: 1rem; }
+  .cover-title em { font-style: italic; color: var(--gold-muted); }
+  .cover-sub { font-size: 1rem; color: var(--gray); line-height: 1.8; max-width: 500px; margin: 0 auto 2rem; }
+  .cover-details { display: flex; justify-content: center; gap: 2.5rem; margin-bottom: 2.5rem; }
+  .cover-detail { text-align: center; }
+  .cover-detail-num { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--navy); font-weight: 400; }
+  .cover-detail-label { font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gray); margin-top: 0.2rem; }
+  .btn-start { display: inline-block; padding: 1rem 2.5rem; background: var(--gold); color: var(--white); font-family: 'Lato', sans-serif; font-size: 0.85rem; letter-spacing: 0.12em; text-transform: uppercase; border: none; cursor: pointer; border-radius: 2px; text-decoration: none; }
+  .btn-start:hover { background: var(--gold-muted); }
+  .cover-free { font-size: 0.75rem; color: var(--gray); margin-top: 0.75rem; }
+
+  /* PROGRESS */
+  .progress-wrap { margin-bottom: 2.5rem; }
+  .progress-bar { height: 2px; background: var(--border-light); border-radius: 2px; }
+  .progress-fill { height: 100%; background: var(--gold); border-radius: 2px; transition: width 0.4s ease; }
+  .progress-label { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray); margin-top: 0.6rem; }
+
+  /* QUESTIONS */
+  .step { display: none; }
+  .step.active { display: block; animation: fadeIn 0.25s ease; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+  .q-text { font-family: 'Playfair Display', serif; font-size: clamp(1.3rem, 2.5vw, 1.7rem); font-weight: 400; color: var(--navy); line-height: 1.4; margin-bottom: 1.75rem; }
+  .options { display: flex; flex-direction: column; gap: 0.75rem; }
+  .option { padding: 1rem 1.25rem; border: 1px solid var(--border-light); background: var(--white); font-size: 0.92rem; color: var(--text-body); text-align: left; cursor: pointer; border-radius: 4px; line-height: 1.5; transition: border-color 0.15s, background 0.15s; font-family: 'Lato', sans-serif; }
+  .option:hover { border-color: var(--gold); background: #fdf9f2; }
+  .option.selected { border-color: var(--gold); background: #fdf9f2; border-width: 1.5px; }
+  .text-area { width: 100%; padding: 1rem 1.25rem; border: 1px solid var(--border-light); background: var(--white); font-size: 0.92rem; color: var(--text-body); font-family: 'Lato', sans-serif; border-radius: 4px; resize: vertical; line-height: 1.65; }
+  .text-area:focus { outline: none; border-color: var(--gold); }
+  .text-area-hint { font-size: 0.78rem; color: var(--gray); margin-top: 0.5rem; line-height: 1.55; }
+
+  /* NAV BUTTONS */
+  .step-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; }
+  .btn-back { background: none; border: none; font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray); cursor: pointer; padding: 0; font-family: 'Lato', sans-serif; }
+  .btn-back:hover { color: var(--text-body); }
+  .btn-next { padding: 0.85rem 2rem; background: var(--navy); color: var(--white); font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; border: none; cursor: pointer; border-radius: 2px; opacity: 0.35; transition: opacity 0.15s, background 0.15s; font-family: 'Lato', sans-serif; }
+  .btn-next.ready { opacity: 1; }
+  .btn-next.ready:hover { background: var(--navy-mid); }
+
+  /* LOADING */
+  .loading { text-align: center; padding: 5rem 0; }
+  .spinner { width: 36px; height: 36px; border: 2px solid var(--border-light); border-top-color: var(--gold); border-radius: 50%; animation: spin 0.9s linear infinite; margin: 0 auto 1.5rem; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .loading-text { font-size: 0.85rem; color: var(--gray); letter-spacing: 0.05em; }
+
+  /* RESULTS */
+  .result-wrap { animation: fadeIn 0.4s ease; }
+  .result-header { background: var(--navy); padding: 2.5rem; position: relative; border-radius: 4px 4px 0 0; }
+  .result-header::before { content: ''; position: absolute; top: 0; left: 2.5rem; width: 3rem; height: 3px; background: var(--gold); }
+  .result-tag { font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.6rem; }
+  .result-pattern { font-family: 'Playfair Display', serif; font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 400; color: var(--cream); line-height: 1.3; }
+  .result-body { background: var(--white); border: 1px solid var(--border-light); border-top: none; border-radius: 0 0 4px 4px; padding: 2.5rem; }
+  .result-section { margin-bottom: 2rem; }
+  .result-section:last-of-type { margin-bottom: 0; }
+  .result-section-label { font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-muted); margin-bottom: 0.75rem; }
+  .result-section-text { font-size: 0.95rem; line-height: 1.85; color: var(--text-body); }
+  .result-divider { height: 1px; background: var(--border-light); margin: 2rem 0; }
+  .costs-list { display: flex; flex-direction: column; gap: 0.6rem; }
+  .cost-item { font-size: 0.92rem; color: var(--text-body); line-height: 1.6; padding-left: 1.1rem; position: relative; }
+  .cost-item::before { content: ''; position: absolute; left: 0; top: 9px; width: 5px; height: 5px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
+  .next-step-block { background: var(--light-bg); border-left: 3px solid var(--gold); padding: 1.25rem 1.5rem; margin: 2rem 0; border-radius: 0 4px 4px 0; }
+  .next-step-label { font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-muted); margin-bottom: 0.5rem; }
+  .next-step-text { font-size: 0.92rem; color: var(--text-body); line-height: 1.75; }
+  .cta-block { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--border-light); }
+  .cta-primary { display: inline-block; padding: 0.9rem 1.75rem; background: var(--gold); color: var(--white); font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; border-radius: 2px; font-family: 'Lato', sans-serif; border: none; cursor: pointer; }
+  .cta-primary:hover { background: var(--gold-muted); }
+  .cta-secondary { display: inline-block; padding: 0.9rem 1.75rem; background: none; color: var(--text-body); font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; border: 1px solid var(--border-light); border-radius: 2px; font-family: 'Lato', sans-serif; cursor: pointer; }
+  .cta-secondary:hover { border-color: var(--navy); color: var(--navy); }
+
+  /* EMAIL CAPTURE */
+  .email-section { margin-top: 2rem; text-align: center; }
+  .email-prompt { font-size: 0.85rem; color: var(--gray); margin-bottom: 1rem; }
+  .email-prompt span { color: var(--gold); cursor: pointer; text-decoration: underline; }
+  .email-form { display: none; max-width: 400px; margin: 0 auto; }
+  .email-input { width: 100%; padding: 0.85rem 1rem; border: 1px solid var(--border-light); font-size: 0.92rem; font-family: 'Lato', sans-serif; margin-bottom: 0.75rem; border-radius: 2px; }
+  .email-input:focus { outline: none; border-color: var(--gold); }
+  .email-submit { width: 100%; padding: 0.85rem; background: var(--navy); color: var(--white); font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; border: none; cursor: pointer; border-radius: 2px; font-family: 'Lato', sans-serif; }
+  .email-submit:hover { background: var(--navy-mid); }
+
+  /* FOOTER */
+  .page-footer { text-align: center; padding: 3rem 2rem; border-top: 1px solid var(--border-light); margin-top: 4rem; }
+  .footer-logo { font-size: 0.7rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gray); margin-bottom: 0.5rem; }
+  .footer-link { font-size: 0.8rem; color: var(--gray); text-decoration: none; }
+  .footer-link:hover { color: var(--text-body); }
+
+  @media (max-width: 640px) {
+    .site-nav { padding: 1rem 1.5rem; }
+    .page-wrap { padding: 2.5rem 1.5rem 5rem; }
+    .cover-details { gap: 1.5rem; }
+    .result-header, .result-body { padding: 1.75rem; }
+    .cta-block { flex-direction: column; }
+    .cta-primary, .cta-secondary { text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <a href="/" class="nav-logo">Strata</a>
+  <a href="/" class="nav-back">Back to site</a>
+</nav>
+
+<div class="page-wrap">
+
+  <!-- COVER -->
+  <div id="cover">
+    <div class="cover">
+      <p class="cover-tag">Free Assessment</p>
+      <h1 class="cover-title">Find out what is behind<br>the friction in your business</h1>
+      <p class="cover-sub">Answer 7 questions about where things are right now. You will receive a personalized read on your specific situation and a clear recommendation for what to do next.</p>
+      <div class="cover-details">
+        <div class="cover-detail">
+          <div class="cover-detail-num">7</div>
+          <div class="cover-detail-label">Questions</div>
+        </div>
+        <div class="cover-detail">
+          <div class="cover-detail-num">3</div>
+          <div class="cover-detail-label">Minutes</div>
+        </div>
+        <div class="cover-detail">
+          <div class="cover-detail-num">Free</div>
+          <div class="cover-detail-label">No obligation</div>
+        </div>
+      </div>
+      <button class="btn-start" onclick="startAssessment()">Start your assessment</button>
+      <p class="cover-free">Free. No obligation. Every response is personal, not a template.</p>
+    </div>
+  </div>
+
+  <!-- ASSESSMENT -->
+  <div id="assessment" style="display:none;">
+    <div class="progress-wrap">
+      <div class="progress-bar"><div class="progress-fill" id="progress" style="width:0%"></div></div>
+      <p class="progress-label" id="progress-label">Question 1 of 7</p>
+    </div>
+
+    <div class="step active" id="step-0">
+      <p class="q-text">What best describes where your business is right now?</p>
+      <div class="options">
+        <button class="option" onclick="selectOption(0,this)">Building momentum but too many things pulling in different directions</button>
+        <button class="option" onclick="selectOption(0,this)">Established and growing, but decisions keep getting delayed</button>
+        <button class="option" onclick="selectOption(0,this)">At a real inflection point and not sure what to prioritize</button>
+        <button class="option" onclick="selectOption(0,this)">Feeling behind even though I am working hard</button>
+      </div>
+      <div class="step-nav"><span></span><button class="btn-next" id="next-0" onclick="nextStep(0)">Next</button></div>
+    </div>
+
+    <div class="step" id="step-1">
+      <p class="q-text">When you think about what is most stuck right now, what does it feel like?</p>
+      <div class="options">
+        <button class="option" onclick="selectOption(1,this)">Too many options and I cannot determine which one to move on</button>
+        <button class="option" onclick="selectOption(1,this)">I know what I need to do but cannot get traction on it</button>
+        <button class="option" onclick="selectOption(1,this)">Everything feels equally urgent so nothing gets full attention</button>
+        <button class="option" onclick="selectOption(1,this)">I keep starting things but not finishing them</button>
+      </div>
+      <div class="step-nav"><button class="btn-back" onclick="prevStep(1)">Back</button><button class="btn-next" id="next-1" onclick="nextStep(1)">Next</button></div>
+    </div>
+
+    <div class="step" id="step-2">
+      <p class="q-text">How long have the most important decisions been sitting on your list?</p>
+      <div class="options">
+        <button class="option" onclick="selectOption(2,this)">A few weeks</button>
+        <button class="option" onclick="selectOption(2,this)">One to three months</button>
+        <button class="option" onclick="selectOption(2,this)">More than three months</button>
+        <button class="option" onclick="selectOption(2,this)">I cannot even remember when it started</button>
+      </div>
+      <div class="step-nav"><button class="btn-back" onclick="prevStep(2)">Back</button><button class="btn-next" id="next-2" onclick="nextStep(2)">Next</button></div>
+    </div>
+
+    <div class="step" id="step-3">
+      <p class="q-text">What have you already tried to get unstuck?</p>
+      <div class="options">
+        <button class="option" onclick="selectOption(3,this)">More research and planning</button>
+        <button class="option" onclick="selectOption(3,this)">Talking it through with people I trust</button>
+        <button class="option" onclick="selectOption(3,this)">Just pushing harder and doing more</button>
+        <button class="option" onclick="selectOption(3,this)">Nothing yet, still trying to figure out where to start</button>
+      </div>
+      <div class="step-nav"><button class="btn-back" onclick="prevStep(3)">Back</button><button class="btn-next" id="next-3" onclick="nextStep(3)">Next</button></div>
+    </div>
+
+    <div class="step" id="step-4">
+      <p class="q-text">What do you think this is costing your business right now?</p>
+      <div class="options">
+        <button class="option" onclick="selectOption(4,this)">Lost revenue or missed opportunities</button>
+        <button class="option" onclick="selectOption(4,this)">Time I should be spending on other things</button>
+        <button class="option" onclick="selectOption(4,this)">Team confusion or misalignment</button>
+        <button class="option" onclick="selectOption(4,this)">My own energy and confidence</button>
+      </div>
+      <div class="step-nav"><button class="btn-back" onclick="prevStep(4)">Back</button><button class="btn-next" id="next-4" onclick="nextStep(4)">Next</button></div>
+    </div>
+
+    <div class="step" id="step-5">
+      <p class="q-text">What would feel like success 90 days from now?</p>
+      <div class="options">
+        <button class="option" onclick="selectOption(5,this)">A clear priority system I can actually use</button>
+        <button class="option" onclick="selectOption(5,this)">Momentum on the one thing that matters most</button>
+        <button class="option" onclick="selectOption(5,this)">A plan my team is aligned on and executing</button>
+        <button class="option" onclick="selectOption(5,this)">Confidence that I am working on the right things</button>
+      </div>
+      <div class="step-nav"><button class="btn-back" onclick="prevStep(5)">Back</button><button class="btn-next" id="next-5" onclick="nextStep(5)">Next</button></div>
+    </div>
+
+    <div class="step" id="step-6">
+      <p class="q-text">Briefly describe what your business does.</p>
+      <textarea class="text-area" id="business-desc" rows="4" placeholder="e.g. I run a 12-person marketing agency serving mid-market brands, about $2M in revenue. We have been growing fast and I cannot keep up with the decisions the growth is creating." oninput="checkText()"></textarea>
+      <p class="text-area-hint">The more specific you are, the more useful your assessment will be.</p>
+      <div class="step-nav"><button class="btn-back" onclick="prevStep(6)">Back</button><button class="btn-next" id="next-6" onclick="submitAssessment()">Get my assessment</button></div>
+    </div>
+  </div>
+
+  <!-- LOADING -->
+  <div id="loading" style="display:none;" class="loading">
+    <div class="spinner"></div>
+    <p class="loading-text">Building your assessment...</p>
+  </div>
+
+  <!-- RESULTS -->
+  <div id="results" style="display:none;" class="result-wrap">
+    <div class="result-header">
+      <p class="result-tag">Your Decision Overload Pattern</p>
+      <p class="result-pattern" id="r-pattern">—</p>
+    </div>
+    <div class="result-body">
+
+      <div class="result-section">
+        <p class="result-section-label">What is happening</p>
+        <p class="result-section-text" id="r-what">—</p>
+      </div>
+
+      <div class="result-divider"></div>
+
+      <div class="result-section">
+        <p class="result-section-label">Why what you have tried has not resolved it</p>
+        <p class="result-section-text" id="r-why">—</p>
+      </div>
+
+      <div class="result-divider"></div>
+
+      <div class="result-section">
+        <p class="result-section-label">What this is likely costing your business</p>
+        <div class="costs-list" id="r-costs"></div>
+      </div>
+
+      <div class="result-divider"></div>
+
+      <div class="result-section">
+        <p class="result-section-label">What becomes possible when this is resolved</p>
+        <p class="result-section-text" id="r-possible">—</p>
+      </div>
+
+      <div class="next-step-block">
+        <p class="next-step-label">Recommended next step</p>
+        <p class="next-step-text" id="r-next">—</p>
+      </div>
+
+      <div class="cta-block">
+        <a class="cta-primary" href="/" id="r-cta-primary">Get the free self-diagnosis</a>
+        <a class="cta-secondary" href="/">Learn more about Strata</a>
+      </div>
+    </div>
+
+    <div class="email-section">
+      <p class="email-prompt">Want this sent to your inbox? <span onclick="showEmail()">Enter your email</span></p>
+      <div class="email-form" id="email-form">
+        <input type="email" class="email-input" id="email-input" placeholder="your@email.com">
+        <button class="email-submit" onclick="submitEmail()">Send my assessment</button>
+      </div>
+      <p id="email-confirm" style="display:none;font-size:0.85rem;color:var(--gray);">Your assessment is on its way. Check your inbox.</p>
+    </div>
+  </div>
+
+</div>
+
+<footer class="page-footer">
+  <p class="footer-logo">Strata</p>
+  <a href="/" class="footer-link">stratabyrj.com</a>
+</footer>
+
+<script>
+const answers = {};
+let step = 0;
+
+function startAssessment() {
+  document.getElementById('cover').style.display = 'none';
+  document.getElementById('assessment').style.display = 'block';
+  updateProgress(0);
+}
+
+function updateProgress(s) {
+  document.getElementById('progress').style.width = Math.round((s / 7) * 100) + '%';
+  document.getElementById('progress-label').textContent = s < 7 ? 'Question ' + (s + 1) + ' of 7' : 'Complete';
+}
+
+function selectOption(q, el) {
+  answers[q] = el.textContent.trim();
+  document.querySelectorAll('#step-' + q + ' .option').forEach(b => b.classList.remove('selected'));
+  el.classList.add('selected');
+  const btn = document.getElementById('next-' + q);
+  if (btn) btn.classList.add('ready');
+}
+
+function checkText() {
+  const val = document.getElementById('business-desc').value.trim();
+  answers[6] = val;
+  const btn = document.getElementById('next-6');
+  if (val.length > 15) btn.classList.add('ready');
+  else btn.classList.remove('ready');
+}
+
+function nextStep(from) {
+  if (!answers[from]) return;
+  document.getElementById('step-' + from).classList.remove('active');
+  step = from + 1;
+  document.getElementById('step-' + step).classList.add('active');
+  updateProgress(step);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function prevStep(current) {
+  document.getElementById('step-' + current).classList.remove('active');
+  step = current - 1;
+  document.getElementById('step-' + step).classList.add('active');
+  updateProgress(step);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+async function submitAssessment() {
+  if (!answers[6] || answers[6].length < 15) return;
+  document.getElementById('assessment').style.display = 'none';
+  document.getElementById('loading').style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  const systemPrompt = `You are a senior advisor at Strata, a strategy practice that helps business owners and leaders work through Decision Overload. Decision Overload is what happens when the volume of competing priorities exceeds someone's current system for deciding what matters most. Give each person a substantive, specific, personalized assessment. Write clearly and directly. Do not use em dashes. Do not use antithesis constructions where you contrast two things in parallel for rhetorical effect, avoid phrases like not X but Y or less about X more about Y. State things directly. Write in second person. Be specific to their situation using the details they gave you.`;
+
+  const userMsg = `Assessment responses:
+1. Business situation: ${answers[0]}
+2. What feels most stuck: ${answers[1]}
+3. How long decisions have been sitting: ${answers[2]}
+4. What they have already tried: ${answers[3]}
+5. What it is costing them: ${answers[4]}
+6. What success looks like in 90 days: ${answers[5]}
+7. Their business: ${answers[6]}
+
+Return only valid JSON in this exact format:
+{
+  "pattern": "A 4-7 word name for their specific Decision Overload pattern. Make it specific and recognizable. Examples: The Overloaded Operator, The Circling Strategist, The Busy But Blocked Builder. Create one that fits their actual situation.",
+  "what_happening": "Two full paragraphs totaling 130 to 160 words. Paragraph one: describe specifically what is happening in their business based on the combination of answers. Name the dynamic clearly. Reference their specific situation and business type. Paragraph two: explain what is driving this pattern at a deeper level and why this particular combination creates the stuck feeling they described.",
+  "why_not_resolved": "One full paragraph, 80 to 100 words. Explain specifically why the approach they tried has not resolved it and what is missing. Tailor this directly to what they selected. If more research and planning, explain why more information does not solve a sequencing problem. If talking it through, explain why conversation without a decision framework does not produce resolution.",
+  "costs": ["Three specific bullet points, one sentence each, describing what this pattern is likely costing their business. Reference their stated cost and extrapolate concretely. Specific to their business type."],
+  "what_possible": "One full paragraph, 80 to 100 words. Describe specifically what their business and their experience of running it would look like once this is resolved. Ground it in their stated 90-day success goal. Concrete and specific.",
+  "next_step": "Two to three sentences recommending the specific right starting point. Choose from: the free Decision Overload Self-Diagnosis PDF, the Clarity Blueprint workbook at $47, or reaching out directly to Strata. Base the recommendation on severity and duration. Explain specifically why that step fits their situation.",
+  "cta": "workbook or diagnosis or contact"
+}`;
+
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1200,
+        system: systemPrompt,
+        messages: [{ role: 'user', content: userMsg }]
+      })
+    });
+    const data = await res.json();
+    const parsed = JSON.parse(data.content[0].text.trim().replace(/```json|```/g,'').trim());
+
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('results').style.display = 'block';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    document.getElementById('r-pattern').textContent = parsed.pattern;
+    document.getElementById('r-what').textContent = parsed.what_happening;
+    document.getElementById('r-why').textContent = parsed.why_not_resolved;
+    document.getElementById('r-possible').textContent = parsed.what_possible;
+    document.getElementById('r-next').textContent = parsed.next_step;
+
+    const costsEl = document.getElementById('r-costs');
+    costsEl.innerHTML = '';
+    (parsed.costs || []).forEach(c => {
+      const d = document.createElement('div');
+      d.className = 'cost-item';
+      d.textContent = c;
+      costsEl.appendChild(d);
+    });
+
+    const cta = document.getElementById('r-cta-primary');
+    if (parsed.cta === 'workbook') {
+      cta.textContent = 'Get the Clarity Blueprint ($47)';
+      cta.href = '/resources';
+    } else if (parsed.cta === 'contact') {
+      cta.textContent = 'Reach out to Strata';
+      cta.href = '/contact';
+    } else {
+      cta.textContent = 'Get the free self-diagnosis';
+      cta.href = '/resources';
+    }
+
+  } catch(e) {
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('results').style.display = 'block';
+    document.getElementById('r-pattern').textContent = 'Assessment complete';
+    document.getElementById('r-what').textContent = 'Based on your answers, Decision Overload is present in your business. The combination you described, competing demands over an extended period with no clear resolution, is exactly the pattern Strata is built to address.';
+    document.getElementById('r-why').textContent = 'The approaches you have tried address the symptoms rather than the underlying system gap. What is missing is a structured framework for evaluating competing options against a clear set of criteria specific to your business right now.';
+    document.getElementById('r-costs').innerHTML = '<div class="cost-item">Delayed decisions that compound over time into larger gaps between where you are and where you need to be</div><div class="cost-item">Attention and energy spent processing options rather than executing on what matters most</div><div class="cost-item">Opportunities that require a decision window you have not been able to open</div>';
+    document.getElementById('r-possible').textContent = 'With a clear decision framework in place, the decisions that have been circling can finally close. You would have a reliable way to evaluate what belongs on your list and what does not, and the confidence that comes from knowing you are building in the right direction.';
+    document.getElementById('r-next').textContent = 'Start with the free Decision Overload Self-Diagnosis to get a clearer picture of where the friction is concentrated. That gives you and Strata a shared starting point for whatever comes next.';
+  }
+}
+
+function showEmail() {
+  document.getElementById('email-form').style.display = 'block';
+}
+
+function submitEmail() {
+  const val = document.getElementById('email-input').value.trim();
+  if (!val || !val.includes('@')) return;
+  document.getElementById('email-form').style.display = 'none';
+  document.getElementById('email-confirm').style.display = 'block';
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,1801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Strata | Strategic Clarity for Leaders and Business Owners</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy:        #0d1a2e;
+    --navy-mid:    #152238;
+    --navy-light:  #1e3252;
+    --gold:        #b8922a;
+    --gold-light:  #c9a84c;
+    --gold-muted:  #8a6e30;
+    --cream:       #f5f0e6;
+    --cream-dark:  #e8dfc8;
+    --white:       #fafaf8;
+    --light-bg:    #f2ede3;
+    --light-mid:   #e8e0ce;
+    --text-dark:   #1a1a2e;
+    --text-mid:    #3a3a4e;
+    --gray:        #8a8d99;
+    --gray-light:  #bbbfc9;
+    --border-dark: rgba(201,168,76,0.2);
+    --border-light: rgba(13,26,46,0.12);
+    --border-soft: rgba(255,255,255,0.07);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Jost', sans-serif;
+    font-size: 17px;
+    line-height: 1.75;
+    overflow-x: hidden;
+    background: var(--navy);
+    color: var(--cream);
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 200;
+    padding: 1.4rem 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(13,26,46,0.97);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border-dark);
+  }
+
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    color: var(--cream);
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+    align-items: center;
+  }
+
+  .nav-links a {
+    color: var(--gray-light);
+    text-decoration: none;
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 400;
+    transition: color 0.2s;
+    cursor: pointer;
+  }
+
+  .nav-links a:hover, .nav-links a.active { color: var(--gold-light); }
+
+  .nav-cta {
+    background: var(--gold) !important;
+    color: var(--navy) !important;
+    padding: 0.6rem 1.6rem;
+    font-weight: 500 !important;
+    letter-spacing: 0.1em;
+    transition: background 0.2s !important;
+  }
+
+  .nav-cta:hover { background: var(--gold-light) !important; }
+
+  /* ── PAGE SYSTEM ── */
+  .page { display: none; }
+  .page.active { display: block; }
+
+  /* ── BUTTONS ── */
+  .btn-gold {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--navy);
+    padding: 0.95rem 2.4rem;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s;
+    text-decoration: none;
+  }
+
+  .btn-gold:hover { background: var(--gold-light); }
+
+  .btn-outline-dark {
+    display: inline-block;
+    background: transparent;
+    color: var(--navy);
+    padding: 0.95rem 2.4rem;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 400;
+    border: 1px solid rgba(13,26,46,0.35);
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+  }
+
+  .btn-outline-dark:hover { border-color: var(--gold-muted); color: var(--gold-muted); }
+
+  .btn-outline-light {
+    display: inline-block;
+    background: transparent;
+    color: var(--cream);
+    padding: 0.95rem 2.4rem;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 400;
+    border: 1px solid var(--border-dark);
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+  }
+
+  .btn-outline-light:hover { border-color: var(--gold); color: var(--gold-light); }
+
+  /* ── UTILITY ── */
+  .tag {
+    display: inline-block;
+    font-size: 0.68rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    margin-bottom: 1.2rem;
+  }
+
+  .tag-gold { color: var(--gold); }
+  .tag-navy { color: var(--gold-muted); }
+
+  .headline-serif {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    line-height: 1.15;
+  }
+
+  .headline-serif em { font-style: italic; }
+
+  .em-gold { color: var(--gold-light); }
+  .em-navy { color: var(--gold-muted); }
+
+  /* ══════════════════════════════════
+     HOME PAGE
+  ══════════════════════════════════ */
+
+  /* HERO - dark */
+  .hero {
+    background: var(--navy);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 9rem 5rem 6rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -15%;
+    right: -5%;
+    width: 650px;
+    height: 650px;
+    background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  .hero-inner {
+    max-width: 1120px;
+    margin: 0 auto;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 55% 42%;
+    gap: 5rem;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-headline {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 5vw, 4.4rem);
+    font-weight: 400;
+    line-height: 1.1;
+    color: var(--white);
+    margin-bottom: 2rem;
+  }
+
+  .hero-sub {
+    font-size: 1.05rem;
+    color: var(--gray-light);
+    line-height: 1.9;
+    margin-bottom: 3rem;
+    max-width: 500px;
+  }
+
+  .hero-sub strong { color: var(--cream); font-weight: 500; }
+
+  .hero-btns { display: flex; gap: 1.2rem; flex-wrap: wrap; }
+
+  .hero-card {
+    background: var(--navy-mid);
+    border: 1px solid var(--border-dark);
+    padding: 2.8rem;
+    position: relative;
+  }
+
+  .hero-card::before {
+    content: '';
+    position: absolute;
+    top: -1px; left: 2.5rem;
+    width: 3rem; height: 3px;
+    background: var(--gold);
+  }
+
+  .hero-card-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 2rem;
+  }
+
+  .value-point {
+    padding: 1.1rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    display: flex;
+    gap: 1.1rem;
+    align-items: flex-start;
+  }
+
+  .value-point:last-child { border-bottom: none; padding-bottom: 0; }
+
+  .vp-icon { color: var(--gold); font-size: 1rem; flex-shrink: 0; margin-top: 0.2rem; }
+
+  .vp-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--white);
+    margin-bottom: 0.25rem;
+    font-weight: 500;
+  }
+
+  .vp-desc { font-size: 0.83rem; color: var(--gray-light); line-height: 1.55; }
+
+  /* CRED BAR - gold strip */
+  .cred-bar {
+    background: var(--navy-light);
+    padding: 2.8rem 5rem;
+    border-top: 1px solid var(--border-dark);
+    border-bottom: 1px solid var(--border-dark);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .cred-item { text-align: center; flex: 1; min-width: 150px; }
+
+  .cred-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: var(--gold-light);
+    display: block;
+    line-height: 1;
+    margin-bottom: 0.45rem;
+  }
+
+  .cred-label {
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gray-light);
+  }
+
+  .cred-div { width: 1px; height: 3rem; background: var(--border-dark); flex-shrink: 0; }
+
+  /* PROBLEM - light */
+  .problem-section {
+    background: var(--light-bg);
+    color: var(--text-dark);
+    padding: 7rem 5rem;
+  }
+
+  .problem-inner {
+    max-width: 1120px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: start;
+  }
+
+  .problem-headline {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 3.5vw, 3.2rem);
+    font-weight: 400;
+    line-height: 1.2;
+    color: var(--navy);
+    margin-bottom: 0;
+  }
+
+  .pull-quote {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-style: italic;
+    color: var(--navy);
+    line-height: 1.65;
+    padding-left: 1.8rem;
+    border-left: 3px solid var(--gold-muted);
+    margin-bottom: 2.2rem;
+  }
+
+  .body-text-light {
+    font-size: 0.97rem;
+    color: var(--text-mid);
+    line-height: 1.9;
+  }
+
+  .body-text-light p { margin-bottom: 1.2rem; }
+
+  /* METHOD - dark */
+  .method-section {
+    background: var(--navy);
+    padding: 7rem 5rem;
+  }
+
+  .method-inner { max-width: 1120px; margin: 0 auto; }
+
+  .method-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 4rem;
+  }
+
+  .method-card {
+    background: var(--navy-mid);
+    border: 1px solid rgba(255,255,255,0.06);
+    padding: 3rem 2.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s, background 0.3s;
+  }
+
+  .method-card:hover {
+    border-color: var(--border-dark);
+    background: var(--navy-light);
+  }
+
+  .method-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transition: transform 0.3s;
+    transform-origin: left;
+  }
+
+  .method-card:hover::after { transform: scaleX(1); }
+
+  .method-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    color: rgba(201,168,76,0.14);
+    line-height: 1;
+    margin-bottom: 1.4rem;
+  }
+
+  .method-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    color: var(--white);
+    margin-bottom: 0.4rem;
+  }
+
+  .method-outcome {
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+
+  .method-card p { font-size: 0.9rem; color: var(--gray-light); line-height: 1.78; }
+
+  /* WHY STRATA - light */
+  .why-section {
+    background: var(--cream-dark);
+    color: var(--text-dark);
+    padding: 7rem 5rem;
+  }
+
+  .why-inner {
+    max-width: 1120px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: start;
+  }
+
+  .why-headline {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 3.5vw, 3.2rem);
+    color: var(--navy);
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+
+  .dna-box {
+    background: var(--navy);
+    padding: 2.5rem;
+    margin-top: 2rem;
+    position: relative;
+  }
+
+  .dna-box::before {
+    content: '';
+    position: absolute;
+    top: -1px; left: 2rem;
+    width: 3rem; height: 3px;
+    background: var(--gold);
+  }
+
+  .dna-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+
+  .dna-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--cream);
+    line-height: 1.7;
+  }
+
+  .proof-list {
+    list-style: none;
+    margin-top: 1.5rem;
+  }
+
+  .proof-list li {
+    font-size: 0.92rem;
+    color: var(--text-mid);
+    padding: 0.85rem 0;
+    border-bottom: 1px solid rgba(13,26,46,0.1);
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    line-height: 1.55;
+  }
+
+  .proof-list li::before { content: '→'; color: var(--gold-muted); flex-shrink: 0; }
+
+  /* CTA BAND - dark */
+  .cta-band {
+    background: var(--navy-mid);
+    border-top: 1px solid var(--border-dark);
+    border-bottom: 1px solid var(--border-dark);
+    text-align: center;
+    padding: 7rem 5rem;
+  }
+
+  /* ══════════════════════════════════
+     SERVICES PAGE
+  ══════════════════════════════════ */
+
+  /* Services hero - dark */
+  .services-hero {
+    background: var(--navy);
+    padding: 10rem 5rem 5rem;
+    border-bottom: 1px solid var(--border-dark);
+  }
+
+  .services-hero-inner { max-width: 1120px; margin: 0 auto; }
+
+  /* Offer cards - light bg */
+  .offers-section {
+    background: var(--light-bg);
+    padding: 6rem 5rem;
+  }
+
+  .offer-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+    max-width: 1120px;
+    margin: 3.5rem auto 0;
+  }
+
+  .offer-card {
+    background: var(--white);
+    border: 1px solid var(--border-light);
+    position: relative;
+    overflow: hidden;
+    transition: box-shadow 0.3s;
+  }
+
+  .offer-card:hover { box-shadow: 0 8px 40px rgba(13,26,46,0.1); }
+
+  .offer-card.featured { border-color: rgba(201,168,76,0.4); }
+
+  .offer-badge {
+    position: absolute;
+    top: 0; right: 0;
+    background: var(--gold);
+    color: var(--navy);
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 0.4rem 1.2rem;
+  }
+
+  .offer-header {
+    padding: 3rem 3rem 2rem;
+    border-bottom: 1px solid var(--border-light);
+  }
+
+  .offer-step {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold-muted);
+    margin-bottom: 0.7rem;
+  }
+
+  .offer-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    color: var(--navy);
+    margin-bottom: 0.8rem;
+  }
+
+  .offer-tagline {
+    font-size: 0.93rem;
+    color: var(--text-mid);
+    line-height: 1.65;
+  }
+
+  .offer-body { padding: 2.5rem 3rem 3rem; }
+
+  .offer-value-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold-muted);
+    margin-top: 1.8rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .offer-outcomes {
+    list-style: none;
+    margin-bottom: 1.8rem;
+  }
+
+  .offer-outcomes li {
+    font-size: 0.88rem;
+    color: var(--text-mid);
+    padding: 0.65rem 0;
+    border-bottom: 1px solid rgba(13,26,46,0.07);
+    display: flex;
+    gap: 0.8rem;
+    line-height: 1.5;
+  }
+
+  .offer-outcomes li::before { content: '→'; color: var(--gold-muted); flex-shrink: 0; }
+
+  /* Details toggle */
+  .details-toggle {
+    background: none;
+    border: 1px solid var(--border-light);
+    color: var(--text-mid);
+    font-family: 'Jost', sans-serif;
+    font-size: 0.73rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.7rem 1.4rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-bottom: 1.8rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .details-toggle:hover { border-color: var(--gold-muted); color: var(--navy); }
+
+  .toggle-arrow { transition: transform 0.25s; font-size: 0.8rem; }
+  .toggle-arrow.open { transform: rotate(180deg); }
+
+  .details-panel {
+    display: none;
+    padding: 1.5rem 0 0.5rem;
+    border-top: 1px solid var(--border-light);
+    margin-top: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .details-panel.open { display: block; }
+
+  .price-display {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.4rem;
+    color: var(--navy);
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+
+  .price-note {
+    font-size: 0.8rem;
+    color: var(--gray);
+    margin-bottom: 1.5rem;
+  }
+
+  .phase-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--gold-muted);
+    margin-top: 1.2rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .phase-text {
+    font-size: 0.87rem;
+    color: var(--text-mid);
+    line-height: 1.7;
+  }
+
+  /* Fit section - dark */
+  .fit-section {
+    background: var(--navy);
+    color: var(--cream);
+    padding: 7rem 5rem;
+  }
+
+  .fit-inner { max-width: 1120px; margin: 0 auto; }
+
+  .fit-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    margin-top: 4rem;
+  }
+
+  .fit-block h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: var(--white);
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-dark);
+  }
+
+  .fit-list { list-style: none; }
+
+  .fit-list li {
+    font-size: 0.9rem;
+    color: var(--gray-light);
+    padding: 0.75rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    display: flex;
+    gap: 0.8rem;
+    align-items: flex-start;
+    line-height: 1.5;
+  }
+
+  .fit-list li::before { content: '✓'; color: var(--gold); flex-shrink: 0; }
+
+  /* ══════════════════════════════════
+     ABOUT PAGE
+  ══════════════════════════════════ */
+
+  /* About hero - dark */
+  .about-hero {
+    background: var(--navy);
+    padding: 10rem 5rem 6rem;
+    border-bottom: 1px solid var(--border-dark);
+  }
+
+  .about-hero-inner {
+    max-width: 1120px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 55% 40%;
+    gap: 6rem;
+    align-items: start;
+  }
+
+  /* About story - light */
+  .about-story {
+    background: var(--light-bg);
+    color: var(--text-dark);
+    padding: 7rem 5rem;
+  }
+
+  .story-inner {
+    max-width: 1120px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+  }
+
+  .story-body {
+    font-size: 0.97rem;
+    color: var(--text-mid);
+    line-height: 1.9;
+  }
+
+  .story-body p { margin-bottom: 1.4rem; }
+
+  /* Credentials - dark */
+  .creds-section {
+    background: var(--navy-mid);
+    padding: 7rem 5rem;
+    border-top: 1px solid var(--border-dark);
+  }
+
+  .creds-inner { max-width: 1120px; margin: 0 auto; }
+
+  .creds-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 4rem;
+  }
+
+  .cred-card {
+    background: var(--navy);
+    border: 1px solid rgba(255,255,255,0.06);
+    padding: 2.5rem;
+    transition: border-color 0.3s;
+  }
+
+  .cred-card:hover { border-color: var(--border-dark); }
+
+  .cred-icon { color: var(--gold); font-size: 1.2rem; margin-bottom: 1.2rem; }
+
+  .cred-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    color: var(--white);
+    margin-bottom: 0.4rem;
+  }
+
+  .cred-org {
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.8rem;
+  }
+
+  .cred-desc { font-size: 0.85rem; color: var(--gray-light); line-height: 1.65; }
+
+  /* Background section - light */
+  .background-section {
+    background: var(--cream-dark);
+    color: var(--text-dark);
+    padding: 7rem 5rem;
+  }
+
+  .bg-inner { max-width: 1120px; margin: 0 auto; }
+
+  .bg-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 4rem;
+  }
+
+  .bg-card {
+    background: var(--white);
+    border: 1px solid var(--border-light);
+    padding: 2.5rem;
+  }
+
+  .bg-icon { font-size: 1.5rem; margin-bottom: 1rem; }
+
+  .bg-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    color: var(--navy);
+    margin-bottom: 0.6rem;
+  }
+
+  .bg-desc { font-size: 0.87rem; color: var(--text-mid); line-height: 1.7; }
+
+  /* ══════════════════════════════════
+     CONTACT PAGE
+  ══════════════════════════════════ */
+
+  .contact-hero {
+    background: var(--navy);
+    padding: 10rem 5rem 5rem;
+    border-bottom: 1px solid var(--border-dark);
+  }
+
+  .contact-hero-inner { max-width: 1120px; margin: 0 auto; }
+
+  .contact-body {
+    background: var(--light-bg);
+    padding: 6rem 5rem;
+  }
+
+  .contact-inner {
+    max-width: 1120px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 55% 40%;
+    gap: 6rem;
+  }
+
+  .form-group { margin-bottom: 1.8rem; }
+
+  .form-label {
+    display: block;
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-mid);
+    margin-bottom: 0.6rem;
+  }
+
+  .form-input, .form-textarea {
+    width: 100%;
+    background: var(--white);
+    border: 1px solid var(--border-light);
+    color: var(--text-dark);
+    padding: 0.9rem 1.2rem;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.92rem;
+    outline: none;
+    transition: border-color 0.2s;
+    -webkit-appearance: none;
+    border-radius: 0;
+  }
+
+  .form-input:focus, .form-textarea:focus { border-color: var(--gold-muted); }
+  .form-input::placeholder, .form-textarea::placeholder { color: var(--gray); }
+  .form-textarea { height: 140px; resize: vertical; }
+
+  .contact-aside {}
+
+  .aside-block {
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--border-light);
+  }
+
+  .aside-block:first-child { padding-top: 0; }
+  .aside-block:last-child { border-bottom: none; }
+
+  .aside-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold-muted);
+    margin-bottom: 0.8rem;
+  }
+
+  .aside-text { font-size: 0.92rem; color: var(--text-mid); line-height: 1.75; }
+
+  .aside-text a { color: var(--gold-muted); text-decoration: none; }
+  .aside-text a:hover { color: var(--navy); }
+
+  /* ── FOOTER ── */
+  .site-footer {
+    background: var(--navy);
+    border-top: 1px solid var(--border-dark);
+    padding: 3.5rem 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: var(--cream);
+    letter-spacing: 0.18em;
+  }
+
+  .footer-tagline { font-size: 0.8rem; color: var(--gray); margin-top: 0.3rem; }
+
+  .footer-links { display: flex; gap: 2rem; list-style: none; }
+
+  .footer-links a {
+    font-size: 0.73rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gray);
+    cursor: pointer;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--gold-light); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .page.active .anim-1 { animation: fadeUp 0.55s ease 0.05s both; }
+  .page.active .anim-2 { animation: fadeUp 0.55s ease 0.15s both; }
+  .page.active .anim-3 { animation: fadeUp 0.55s ease 0.25s both; }
+  .page.active .anim-4 { animation: fadeUp 0.55s ease 0.35s both; }
+  .page.active .anim-5 { animation: fadeUp 0.55s ease 0.45s both; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 960px) {
+    nav { padding: 1.2rem 2rem; }
+    .nav-links { display: none; }
+    .hero, .problem-section, .method-section, .why-section,
+    .services-hero, .offers-section, .fit-section,
+    .about-hero, .about-story, .creds-section, .background-section,
+    .contact-hero, .contact-body, .cta-band, .site-footer {
+      padding-left: 2rem; padding-right: 2rem;
+    }
+    .hero-inner, .problem-inner, .why-inner, .about-hero-inner,
+    .story-inner, .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .method-grid, .creds-grid, .bg-grid { grid-template-columns: 1fr; }
+    .offer-cards { grid-template-columns: 1fr; }
+    .fit-grid { grid-template-columns: 1fr; }
+    .cred-bar { padding: 2.5rem 2rem; }
+    .cred-div { width: 3rem; height: 1px; }
+    .site-footer { flex-direction: column; text-align: center; padding: 2.5rem 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <span class="nav-logo" onclick="showPage('home')">STRATA</span>
+  <ul class="nav-links">
+    <li><a onclick="showPage('home')" id="nav-home" class="active">Home</a></li>
+    <li><a onclick="showPage('resources')" id="nav-resources">Resources</a></li>
+    <li><a onclick="showPage('about')" id="nav-about">About</a></li>
+    <li><a onclick="showPage('contact')" id="nav-contact" class="nav-cta">Work With Strata</a></li>
+  </ul>
+</nav>
+
+<!-- ════════════════════════════════
+     HOME PAGE
+════════════════════════════════ -->
+<div id="page-home" class="page active">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <span class="tag tag-gold anim-1">Strategic Clarity for Leaders and Business Owners</span>
+        <h1 class="hero-headline anim-2">
+          You have enough ideas.<br>
+          You need clarity on<br>
+          <em style="color:var(--gold-light);">which one matters now.</em>
+        </h1>
+        <p class="hero-sub anim-3">
+          You have built something real. You know the direction. What is happening now is that the decisions are stacking up faster than you can work through them, the priorities are competing, and too much time is going toward evaluating options instead of executing on the right ones. Some leaders also reach a point where they have made the decisions, committed the resources, and then realized the direction did not align with where they actually needed to go. Getting back on track requires the same thing: a clear system for deciding what matters now. That is not a capacity problem or a confidence problem. It is a system problem, and it is costing your business more than it needs to.
+        </p>
+        <div class="hero-btns anim-4">
+          <a class="btn-gold" href="/assessment" style="text-decoration:none;display:inline-block;">Take the Free Assessment</a>
+          <button class="btn-outline-light" onclick="showPage('resources')">See All Resources</button>
+        </div>
+      </div>
+      
+    </div>
+  </section>
+
+  <!-- EARLY EMAIL NUDGE -->
+  <div style="background:var(--navy-mid);border-top:1px solid var(--border-dark);border-bottom:1px solid var(--border-dark);padding:1.2rem 5rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;">
+    <p style="font-size:0.88rem;color:var(--gray-light);line-height:1.5;max-width:560px;">Take 5 minutes. Find out if Decision Overload is what is costing you execution speed, and how acute it is in your business right now.</p>
+    <a class="btn-gold" href="/assessment" style="white-space:nowrap;font-size:0.75rem;padding:0.7rem 1.5rem;flex-shrink:0;text-decoration:none;display:inline-block;">Take the Free Assessment</a>
+  </div>
+
+  <!-- PROBLEM -->
+  <section class="problem-section">
+    <div class="problem-inner">
+      <div>
+        <span class="tag tag-navy">What Is Actually Happening</span>
+        <h2 class="problem-headline">
+          Too much changing at once.<br>
+          No clear priority system.<br>
+          <em style="font-style:italic;color:var(--gold-muted);">Execution stalls.</em>
+        </h2>
+      </div>
+      <div>
+        <div class="pull-quote">"We have strong people and real momentum. But every week we are still debating the same priorities, reacting to the same pressures, and not moving on the things that would actually change our position."</div>
+        <div class="body-text-light">
+          <p>You built a real business. That is not the problem. The problem is that in the last 12 to 18 months, the volume of competing inputs, AI shifts, market changes, new opportunities, internal decisions, has exceeded your current system for deciding what actually matters for your business right now.</p>
+          <p>That is Decision Overload. When the volume of competing priorities exceeds your current system for deciding what matters most, the real cost is not just time. It is the wrong decisions made under pressure, the right moves delayed past the window when they would have mattered, and the slow erosion of forward momentum in a business that has the capability to move faster than it is moving.</p>
+          <p>The fix is not more tactics. The businesses that move forward do not react faster to every new thing. They build systems for deciding what to ignore. Old belief: you need to react to every change. New belief: you need frameworks for deciding what actually matters for your business.</p>
+        </div>
+        <br>
+        <button class="btn-outline-dark" onclick="showPage('resources')">See How It Works</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- METHOD -->
+  <section class="method-section">
+    <div class="method-inner">
+      <span class="tag tag-gold">The Method</span>
+      <h2 class="headline-serif" style="font-size:clamp(2.2rem,3.5vw,3rem);color:var(--white);max-width:600px;">
+        Clarify. Prioritize. <em class="em-gold">Execute.</em>
+      </h2>
+      <p style="font-size:1rem;color:var(--gray-light);max-width:580px;margin-top:1rem;">A structured three-phase method. You move from a backlog of competing priorities to a clear decision framework, a locked priority order, and a roadmap that is already in motion.</p>
+      <div class="method-grid">
+        <div class="method-card">
+          <div class="method-num">01</div>
+          <h3>Clarify</h3>
+          <p class="method-outcome">Names the real constraint. Makes your situation legible.</p>
+          <p>Most business owners have too many options and no clear way to evaluate them. This phase traces the friction to its actual source, so you leave with a decision framework built for your situation, not a list of things to consider.</p>
+        </div>
+        <div class="method-card">
+          <div class="method-num">02</div>
+          <h3>Prioritize</h3>
+          <p class="method-outcome">Forces trade-offs. Locks sequencing. This is where most leaders stay stuck.</p>
+          <p>Too many good ideas with no order of operations is why execution slows. This phase locks your top three priorities and sequences them in the right order. Sequencing is the lever. It is what turns good strategy into actual traction.</p>
+        </div>
+        <div class="method-card">
+          <div class="method-num">03</div>
+          <h3>Execute</h3>
+          <p class="method-outcome">Decision discipline. So you stop rebuilding strategy every week.</p>
+          <p>A roadmap is not a plan document. It is a system for protecting your focus. You leave with a roadmap that has milestones and owners, and a first milestone already complete. Proof the plan works before the engagement ends.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AUDIO INTRO -->
+  <section style="background:var(--light-bg);padding:5rem 5rem;">
+    <div style="max-width:1120px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;">
+      <div>
+        <span class="tag tag-navy">Hear the Thinking Behind the Method</span>
+        <h2 style="font-family:'Playfair Display',serif;font-size:2.2rem;color:var(--navy);font-weight:400;line-height:1.25;margin-bottom:1.2rem;">Two minutes on <em style="font-style:italic;">Decision Overload and what actually fixes it.</em></h2>
+        <p style="font-size:0.97rem;color:var(--text-mid);line-height:1.85;">Before deciding whether this is right for you, spend two minutes hearing how Strata thinks about the problem and what working through it actually looks like. No slides. No pitch. Just a direct conversation about what is happening and how to fix it.</p>
+      </div>
+      <div style="background:var(--navy);padding:2.5rem;position:relative;">
+        <div style="position:absolute;top:-1px;left:2rem;width:3rem;height:3px;background:var(--gold);"></div>
+        <p style="font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem;">Audio Introduction</p>
+        <div style="background:rgba(255,255,255,0.04);border:1px solid var(--border-dark);padding:1.8rem;text-align:center;">
+          <div style="font-size:2.5rem;margin-bottom:1rem;">▶</div>
+          <p style="font-size:0.85rem;color:var(--gray-light);line-height:1.6;">Decision Overload and the Strata Method<br><span style="font-size:0.75rem;color:var(--gray);">2 minutes · Regina N. Johnson</span></p>
+        </div>
+        <p style="font-size:0.75rem;color:var(--gray);margin-top:1rem;font-style:italic;">Audio recording coming soon. In the meantime, read the full story on the About page.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY STRATA -->
+  <section class="why-section">
+    <div class="why-inner">
+      <div>
+        <span class="tag tag-navy">Why This Works</span>
+        <h2 class="why-headline">The businesses that thrive through disruption<br><em style="font-style:italic;">don't chase trends.</em></h2>
+        <div class="body-text-light">
+          <p>They have systems for evaluating what matters for their specific business. That is the difference between a business that reacts to every new thing and one that builds with confidence through whatever comes next.</p>
+          <p>Most business strategy focuses on telling you what to do. Strata focuses on building your capacity to decide, so you are not dependent on outside input every time the environment shifts. The method is built on research studying exactly what breaks down when business owners face competing demands, and what restores clarity.</p>
+          <p>Grounded in research. Built for the leader who has already done the work and is ready for clarity on what to do next.</p>
+        </div>
+      </div>
+      <div>
+        <div class="dna-box">
+          <p class="dna-label">The Shift</p>
+          <p class="dna-text" style="margin-bottom:1rem;">Old belief: You need to react faster to every change.</p>
+          <p class="dna-text" style="color:var(--cream);">New belief: You need frameworks for deciding what to ignore.</p>
+        </div>
+        <br>
+        <button class="btn-outline-dark" onclick="showPage('about')">About Strata</button>
+        <br><br>
+        <a class="btn-gold" href="/assessment" style="text-decoration:none;display:inline-block;">Take the Free Assessment</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BAND -->
+  <section class="cta-band">
+    <span class="tag tag-gold">Start Here</span>
+    <h2 class="headline-serif" style="font-size:clamp(2rem,3.5vw,3rem);color:var(--white);margin-bottom:1.5rem;max-width:640px;margin-left:auto;margin-right:auto;text-align:center;">
+      Find out if Decision Overload is <em class="em-gold">what is costing you.</em>
+    </h2>
+    <p style="font-size:1rem;color:var(--gray-light);max-width:520px;margin:0 auto 2.5rem;text-align:center;line-height:1.85;">Five minutes. 14 questions. You will know exactly where Decision Overload is showing up in your business and what it may be costing you right now. Free.</p>
+    <a class="btn-gold" href="/assessment" style="text-decoration:none;display:inline-block;">Take the Free Assessment</a>
+    <p style="font-size:0.82rem;color:var(--gray);margin-top:1.5rem;text-align:center;">Already know you need to move: <span style="color:var(--gold-light);cursor:pointer;text-decoration:underline;" onclick="showPage('resources')">see all resources.</span></p>
+  </section>
+
+  <!-- EMAIL CAPTURE MODAL -->
+  <div id="email-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.78);z-index:500;align-items:center;justify-content:center;">
+    <div style="background:var(--cream);max-width:480px;width:90%;padding:3rem;position:relative;">
+      <button onclick="closeModal()" style="position:absolute;top:1rem;right:1.2rem;background:none;border:none;font-size:1.3rem;cursor:pointer;color:var(--text-mid);">✕</button>
+      <p style="font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold-muted);margin-bottom:0.8rem;">Free Download</p>
+      <h3 style="font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--navy);margin-bottom:0.8rem;font-weight:400;">The Decision Overload<br><em style="font-style:italic;">Self-Diagnosis</em></h3>
+      <p style="font-size:0.88rem;color:var(--text-mid);line-height:1.75;margin-bottom:1.8rem;">A one-page diagnostic tool to help you see exactly where Decision Overload is showing up in your business. Takes five minutes. Enter your email and it comes to your inbox.</p>
+      <form onsubmit="handleEmailCapture(event)">
+        <div style="margin-bottom:1rem;">
+          <label style="display:block;font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-mid);margin-bottom:0.5rem;">First Name</label>
+          <input type="text" placeholder="Your first name" required style="width:100%;background:var(--white);border:1px solid rgba(13,26,46,0.2);color:var(--text-dark);padding:0.85rem 1rem;font-family:'Jost',sans-serif;font-size:0.92rem;outline:none;">
+        </div>
+        <div style="margin-bottom:1.5rem;">
+          <label style="display:block;font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-mid);margin-bottom:0.5rem;">Email Address</label>
+          <input type="email" placeholder="your@email.com" required style="width:100%;background:var(--white);border:1px solid rgba(13,26,46,0.2);color:var(--text-dark);padding:0.85rem 1rem;font-family:'Jost',sans-serif;font-size:0.92rem;outline:none;">
+        </div>
+        <button type="submit" class="btn-gold" style="width:100%;text-align:center;" id="modal-btn">Send Me the Self-Diagnosis</button>
+      </form>
+      <p style="font-size:0.75rem;color:var(--gray);margin-top:1rem;text-align:center;line-height:1.5;">No spam. You will receive the PDF and occasional notes from Regina on decision-making and business strategy.</p>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div>
+      <div class="footer-logo">STRATA</div>
+      <div class="footer-tagline">Too many options, no clear priority, stalled action. We fix that.</div>
+    </div>
+    <ul class="footer-links">
+      <li><a onclick="showPage('home')">Home</a></li>
+      <li><a onclick="showPage('resources')">Resources</a></li>
+      <li><a onclick="showPage('about')">About</a></li>
+      <li><a onclick="showPage('contact')">Contact</a></li>
+    </ul>
+    <div style="font-size:0.75rem;color:var(--gray);">Founded by Regina N. Johnson</div>
+  </footer>
+</div>
+
+<!-- ════════════════════════════════
+     RESOURCES PAGE
+════════════════════════════════ -->
+<div id="page-resources" class="page">
+
+  <section class="services-hero">
+    <div class="services-hero-inner">
+      <span class="tag tag-gold anim-1">Tools and Resources</span>
+      <h1 class="headline-serif anim-2" style="font-size:clamp(2.5rem,4.5vw,3.8rem);color:var(--white);max-width:720px;">
+        Work through Decision Overload <em class="em-gold">at your own pace.</em>
+      </h1>
+      <p class="anim-3" style="font-size:1.05rem;color:var(--gray-light);margin-top:1.5rem;max-width:620px;line-height:1.85;">
+        Start with the free diagnosis. Buy the workbook when you are ready to build your decision framework. Everything here is grounded in research on what actually helps business owners gain clarity and build what they want.
+      </p>
+    </div>
+  </section>
+
+  <!-- PRODUCT LADDER - light bg -->
+  <section style="background:var(--light-bg);padding:6rem 5rem;">
+    <div style="max-width:1120px;margin:0 auto;">
+
+      <span class="tag tag-navy">The Path</span>
+      <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3vw,2.5rem);color:var(--navy);font-weight:400;margin-bottom:4rem;max-width:640px;">Start free. Go deeper when you are ready. Everything builds on what came before it.</h2>
+
+      <!-- TIER 1 - Free -->
+      <div style="display:grid;grid-template-columns:80px 1fr;gap:2rem;align-items:start;padding:2.5rem 0;border-bottom:1px solid var(--border-light);margin-bottom:0;">
+        <div style="text-align:center;">
+          <div style="font-family:'Playfair Display',serif;font-size:2.2rem;color:var(--gold-muted);line-height:1;">01</div>
+          <div style="font-size:0.62rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--gray);margin-top:0.3rem;">Free</div>
+        </div>
+        <div>
+          <h3 style="font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--navy);margin-bottom:0.5rem;">The Decision Overload Self-Diagnosis</h3>
+          <p style="font-size:0.92rem;color:var(--text-mid);line-height:1.8;margin-bottom:1.2rem;max-width:580px;">14 questions. Five minutes. You find out where competing demands are concentrated in your business, how acute they are, and what the right next step is. Free. This is where everyone starts.</p>
+          <button class="btn-gold" onclick="openModal()" style="font-size:0.75rem;padding:0.75rem 1.8rem;">Get It Free</button>
+        </div>
+      </div>
+
+      <!-- TIER 2 - $47 Workbook -->
+      <div style="display:grid;grid-template-columns:80px 1fr;gap:2rem;align-items:start;padding:2.5rem 0;border-bottom:1px solid var(--border-light);">
+        <div style="text-align:center;">
+          <div style="font-family:'Playfair Display',serif;font-size:2.2rem;color:var(--gold-muted);line-height:1;">02</div>
+          <div style="font-size:0.62rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--gray);margin-top:0.3rem;">$47</div>
+        </div>
+        <div>
+          <div style="display:inline-block;background:var(--navy);color:var(--gold-light);font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;padding:0.3rem 0.8rem;margin-bottom:0.8rem;">Coming Soon</div>
+          <h3 style="font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--navy);margin-bottom:0.5rem;">The Clarity Blueprint</h3>
+          <p style="font-size:0.9rem;color:var(--gold-muted);font-style:italic;margin-bottom:0.6rem;">A Decision Framework for Business Owners</p>
+          <p style="font-size:0.92rem;color:var(--text-mid);line-height:1.8;margin-bottom:1.2rem;max-width:580px;">A guided workbook for the Clarify phase of the Strata method. You work through it at your own pace and leave with a personalized decision framework that tells you what to pursue, what to stop, and in what order, for every future decision your business faces. Grounded in research. No generic frameworks.</p>
+          <button class="btn-outline-dark" onclick="openModal()" style="font-size:0.75rem;padding:0.75rem 1.8rem;">Get notified when it launches</button>
+        </div>
+      </div>
+
+      <!-- TIER 3 - Course coming -->
+      <div style="display:grid;grid-template-columns:80px 1fr;gap:2rem;align-items:start;padding:2.5rem 0;border-bottom:1px solid var(--border-light);">
+        <div style="text-align:center;">
+          <div style="font-family:'Playfair Display',serif;font-size:2.2rem;color:var(--gold-muted);line-height:1;">03</div>
+          <div style="font-size:0.62rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--gray);margin-top:0.3rem;">$397</div>
+        </div>
+        <div>
+          <div style="display:inline-block;background:var(--navy);color:var(--gold-light);font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;padding:0.3rem 0.8rem;margin-bottom:0.8rem;">Coming Soon</div>
+          <h3 style="font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--navy);margin-bottom:0.5rem;">Decision Overload to Focused Execution</h3>
+          <p style="font-size:0.9rem;color:var(--gold-muted);font-style:italic;margin-bottom:0.6rem;">Self-Paced Course + Live Group Session</p>
+          <p style="font-size:0.92rem;color:var(--text-mid);line-height:1.8;margin-bottom:1.2rem;max-width:580px;">A self-paced course walking through the full Clarify, Prioritize, Execute method, with a live group session included so you can work through the material alongside other leaders, ask questions in real time, and apply the framework directly to your situation.</p>
+
+          <button class="btn-outline-dark" onclick="openModal()" style="font-size:0.75rem;padding:0.75rem 1.8rem;">Get notified when it launches</button>
+        </div>
+      </div>
+
+      <!-- TIER 4 - By Application -->
+      <div style="display:grid;grid-template-columns:80px 1fr;gap:2rem;align-items:start;padding:2.5rem 0;">
+        <div style="text-align:center;">
+          <div style="font-family:'Playfair Display',serif;font-size:2.2rem;color:var(--gold-muted);line-height:1;">04</div>
+          <div style="font-size:0.62rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--gray);margin-top:0.3rem;">Select</div>
+        </div>
+        <div>
+          <h3 style="font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--navy);margin-bottom:0.5rem;">Direct Advisory Work</h3>
+          <p style="font-size:0.92rem;color:var(--text-mid);line-height:1.8;margin-bottom:1.2rem;max-width:580px;">For business owners who have worked through the self-study tools and are ready for focused, direct support on their specific situation. The Strata team works with a small number of clients at this level. It is not broadly available and it is not the first step. If you have done the work and believe your situation calls for direct engagement, reach out with context about where you are.</p>
+          <p style="font-size:0.8rem;color:var(--gray);font-style:italic;margin-bottom:1.2rem;">By application only. Availability is limited.</p>
+          <button class="btn-outline-dark" onclick="showPage('contact')" style="font-size:0.75rem;padding:0.75rem 1.8rem;">Send a Message</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+
+  <footer class="site-footer">
+    <div>
+      <div class="footer-logo">STRATA</div>
+      <div class="footer-tagline">Too many options, no clear priority, stalled action. We fix that.</div>
+    </div>
+    <ul class="footer-links">
+      <li><a onclick="showPage('home')">Home</a></li>
+      <li><a onclick="showPage('resources')">Resources</a></li>
+      <li><a onclick="showPage('about')">About</a></li>
+      <li><a onclick="showPage('contact')">Contact</a></li>
+    </ul>
+    <div style="font-size:0.75rem;color:var(--gray);">Founded by Regina N. Johnson</div>
+  </footer>
+</div>
+<div id="page-services" class="page">
+
+  <section class="services-hero">
+    <div class="services-hero-inner">
+      <span class="tag tag-gold anim-1">How We Work Together</span>
+      <h1 class="headline-serif anim-2" style="font-size:clamp(2.5rem,4.5vw,3.8rem);color:var(--white);max-width:720px;">
+        Every engagement starts with clarity on where <em class="em-gold">the challenge is rooted.</em>
+      </h1>
+      <p class="anim-3" style="font-size:1.05rem;color:var(--gray-light);margin-top:1.5rem;max-width:620px;line-height:1.85;">
+        Designed for leaders and established business owners who have built something real and are ready to move from competing priorities to a focused plan they can execute with confidence.
+      </p>
+
+      <!-- VIDEO PLACEHOLDER -->
+      <div style="margin-top:3rem;max-width:680px;background:var(--navy-mid);border:1px solid var(--border-dark);padding:2.5rem;position:relative;" class="anim-4">
+        <div style="position:absolute;top:-1px;left:2rem;width:3rem;height:3px;background:var(--gold);"></div>
+        <p style="font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;">A note before you decide</p>
+        <p style="font-size:1rem;color:var(--gray-light);line-height:1.85;margin-bottom:1rem;">Not sure if the Diagnostic is right for where you are right now? Send a message and describe what you are navigating. You will receive a short, personalized Decision Overload assessment, a set of reflective questions that help clarify whether your situation is a strong fit for this work, before any paid engagement begins.</p>
+        <p style="font-size:0.85rem;color:var(--gray);font-style:italic;">Video overview of the method coming soon.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="offers-section">
+    <div class="offer-cards">
+
+      <!-- DIAGNOSTIC -->
+      <div class="offer-card">
+        <div class="offer-header">
+          <p class="offer-step">Step One</p>
+          <h2 class="offer-title">Decision Overload Diagnostic</h2>
+          <p class="offer-tagline">For business owners who want to understand exactly what is creating friction before committing to a full engagement.</p>
+        </div>
+        <div class="offer-body">
+          <p style="font-size:0.92rem;color:var(--text-mid);line-height:1.8;margin-bottom:1.5rem;">
+            In three focused hours we map your current decision inputs, trace where the bottlenecks are, and identify the root cause of why priorities are not moving. You leave with a concrete decision framework and a strategic roadmap outline, not a list of recommendations but an actual tool you can start using immediately.
+          </p>
+          <p style="font-size:0.92rem;color:var(--text-mid);line-height:1.8;margin-bottom:1.5rem;">
+            This matters because most business owners have already tried the generic advice. What they have not had is a structured diagnosis of their specific situation by someone who has worked inside hundreds of businesses at the point where strategy and execution break down. That specificity is what makes the difference.
+          </p>
+          <p class="offer-value-label">What you walk away with</p>
+          <ul class="offer-outcomes">
+            <li>A decision framework built for your business that you can reuse for every future decision</li>
+            <li>A strategic roadmap outline with your top three recommended priorities clearly sequenced</li>
+            <li>A clear diagnosis of where momentum has slowed and why</li>
+          </ul>
+
+          <button class="details-toggle" onclick="toggleDetails('diag-details', this)">
+            <span>See pricing and engagement details</span>
+            <span class="toggle-arrow">▼</span>
+          </button>
+          <div id="diag-details" class="details-panel">
+            <div class="price-display">$2,500</div>
+            <div class="price-note">3 hours &nbsp;|&nbsp; Credited in full toward the Premium Path</div>
+            <p class="phase-text">If you choose to move forward to the full engagement, the $2,500 is credited toward the Premium Path fee. The Diagnostic is also complete and valuable on its own if you are not ready for the full engagement.</p>
+          </div>
+
+          <button class="btn-gold" onclick="showPage('contact')" style="width:100%;text-align:center;">Start with the Diagnostic</button>
+        </div>
+      </div>
+
+      <!-- PREMIUM PATH -->
+      <div class="offer-card featured">
+        <span class="offer-badge">Flagship</span>
+        <div class="offer-header">
+          <p class="offer-step">The Full Engagement</p>
+          <h2 class="offer-title">Strategic Roadmap Design</h2>
+          <p class="offer-tagline">For business owners who are ready to move from Decision Overload to a focused growth plan they can execute in 45 days.</p>
+        </div>
+        <div class="offer-body">
+          <p style="font-size:0.92rem;color:var(--text-mid);line-height:1.8;margin-bottom:1.5rem;">
+            Over 45 days we build the decision framework, priority stack, and strategic roadmap your business needs to stop spinning and start moving. This is active, collaborative work, not a consulting report you receive at the end. By week two you have auditable artifacts proving the plan is already working.
+          </p>
+          <p style="font-size:0.92rem;color:var(--text-mid);line-height:1.8;margin-bottom:1.5rem;">
+            Most business strategy engagements produce documents. This one produces a running system: a reusable decision framework, a sequenced roadmap with real owners and milestones, and a completed first milestone that proves the methodology works for your specific situation.
+          </p>
+
+          <button class="details-toggle" onclick="toggleDetails('path-details', this)">
+            <span>See pricing, phases, and what you walk away with</span>
+            <span class="toggle-arrow">▼</span>
+          </button>
+          <div id="path-details" class="details-panel">
+            <div class="price-display">$10,000</div>
+            <div class="price-note">45 days &nbsp;|&nbsp; Diagnostic fee credited in full</div>
+
+            <p class="phase-label">Weeks 1 and 2 — Clarify</p>
+            <p class="phase-text">Build your decision framework. Identify the real source of competing demands. Clarify what actually matters for your business right now.</p>
+
+            <p class="phase-label">Weeks 3 and 4 — Prioritize</p>
+            <p class="phase-text">Lock your top three priorities using your decision framework. Create a strategic roadmap with proper sequencing. Align your team on what matters and what is paused.</p>
+
+            <p class="phase-label">Weeks 5 and 6 — Execute</p>
+            <p class="phase-text">Complete your first milestone. Prove the roadmap is working. Document the decision framework for ongoing use beyond the engagement.</p>
+
+            <p class="phase-label" style="margin-top:1.5rem;">What you walk away with</p>
+            <ul class="offer-outcomes" style="margin-top:0.5rem;">
+              <li>A reusable decision framework for every future decision your business faces</li>
+              <li>A strategic roadmap with clear priorities, sequencing, milestones, and owners</li>
+              <li>Your team aligned and executing in the same direction</li>
+              <li>A completed first milestone proving the plan is working before the engagement ends</li>
+            </ul>
+          </div>
+
+          <button class="btn-gold" onclick="showPage('contact')" style="width:100%;text-align:center;">Apply for the Premium Path</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FIT SECTION -->
+  <section class="fit-section">
+    <div class="fit-inner">
+      <span class="tag tag-gold">A Note on Fit</span>
+      <h2 class="headline-serif" style="font-size:clamp(2rem,3vw,2.8rem);color:var(--white);max-width:640px;">
+        This engagement works best when you come prepared <em class="em-gold">to move.</em>
+      </h2>
+      <p style="font-size:1rem;color:var(--gray-light);max-width:580px;margin-top:1rem;">The faster you engage directly in the work, the faster you see results. You bring the business context. The method provides the structure and the clarity.</p>
+      <div class="fit-grid">
+        <div class="fit-block">
+          <h3>This is built for you if...</h3>
+          <ul class="fit-list">
+            <li>You lead an organization or established business and are navigating real complexity</li>
+            <li>You have built something real and the complexity of scaling it has grown</li>
+            <li>Your execution has slowed even though your ideas and drive have not</li>
+            <li>You are navigating AI shifts, market changes, competitive pressure, or all three</li>
+            <li>You want a structured system built for your situation, not generic strategic advice</li>
+            <li>You can commit to active engagement throughout the process</li>
+          </ul>
+        </div>
+        <div class="fit-block">
+          <h3>How to start a conversation</h3>
+          <p style="font-size:0.92rem;color:var(--gray-light);line-height:1.8;margin-bottom:1.5rem;">Send a message directly. No booking link and no intake form before we have spoken. Just a real conversation about where you are and whether this is the right fit for right now.</p>
+          <p style="font-size:0.92rem;color:var(--gray-light);line-height:1.8;margin-bottom:2rem;">To make the first conversation useful, include a brief answer to one question: <em style="color:var(--cream);">What is the decision or set of decisions that feels most stuck right now?</em></p>
+          <button class="btn-gold" onclick="showPage('contact')">Send a Message</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div>
+      <div class="footer-logo">STRATA</div>
+      <div class="footer-tagline">Too many options, no clear priority, stalled action. We fix that.</div>
+    </div>
+    <ul class="footer-links">
+      <li><a onclick="showPage('home')">Home</a></li>
+      <li><a onclick="showPage('resources')">Resources</a></li>
+      <li><a onclick="showPage('about')">About</a></li>
+      <li><a onclick="showPage('contact')">Contact</a></li>
+    </ul>
+    <div style="font-size:0.75rem;color:var(--gray);">Founded by Regina N. Johnson</div>
+  </footer>
+</div>
+
+<!-- ════════════════════════════════
+     ABOUT PAGE
+════════════════════════════════ -->
+<div id="page-about" class="page">
+
+  <!-- STRATA COMPANY HERO - dark -->
+  <section class="about-hero">
+    <div class="about-hero-inner">
+      <div>
+        <span class="tag tag-gold anim-1">About Strata</span>
+        <h1 class="headline-serif anim-2" style="font-size:clamp(2.5rem,4.5vw,3.8rem);color:var(--white);">
+          A strategy practice built for business owners who have <em class="em-gold">ready to build with focus.</em>
+        </h1>
+        <p class="anim-3" style="font-size:1.05rem;color:var(--gray-light);margin-top:1.5rem;max-width:580px;line-height:1.85;">
+          Strata exists for business owners who have built something real and are ready to move through complexity with clarity and precision, not more advice, more options, or more frameworks that do not fit their specific situation.
+        </p>
+      </div>
+      <div class="anim-4">
+        <div class="hero-card">
+          <p class="hero-card-label">The Strata Method</p>
+          <div class="value-point">
+            <span class="vp-icon">→</span>
+            <div>
+              <div class="vp-title">Grounded in research</div>
+              <p class="vp-desc">Every tool and engagement is informed by research on how business owners lose and restore decision-making capacity under pressure. Built from evidence, not generic frameworks.</p>
+            </div>
+          </div>
+          <div class="value-point">
+            <span class="vp-icon">→</span>
+            <div>
+              <div class="vp-title">Built for your situation</div>
+              <p class="vp-desc">The Clarify, Prioritize, Execute method produces frameworks and roadmaps specific to your business, not templates applied uniformly across clients.</p>
+            </div>
+          </div>
+          <div class="value-point">
+            <span class="vp-icon">→</span>
+            <div>
+              <div class="vp-title">Designed to scale without you</div>
+              <p class="vp-desc">The resources Strata produces are yours to keep and reuse. The decision framework you build works long after the engagement ends.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT STRATA IS - light -->
+  <section style="background:var(--light-bg);padding:6rem 5rem;">
+    <div style="max-width:1120px;margin:0 auto;">
+
+      <!-- TOP: two-column company intro -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:start;margin-bottom:5rem;">
+        <div>
+          <span class="tag tag-navy">The Company</span>
+          <h2 style="font-family:'Playfair Display',serif;font-size:2.2rem;color:var(--navy);font-weight:400;line-height:1.25;margin-bottom:1.5rem;">What Strata is and <em style="font-style:italic;">what we believe.</em></h2>
+          <div class="story-body">
+            <p>Strata is the plural of stratum. In geology, strata are the distinct layers of rock and sediment that form over time, each one built on the one before it, each one telling a different part of the story of how something came to be. To read strata is to understand what created the present condition. Geologists do not stop at the surface; they go deeper to understand the structure underneath.</p>
+            <p>The same logic applies inside organizations. Different strata of a business operate under different pressures and with different information. Decision Overload often happens at the intersection of those layers, where competing demands from different parts of a business arrive without a system for sorting them. That intersection is where we work.</p>
+            <p>Decision Overload is a surface condition. What produces it runs deeper: competing layers of demand accumulated over time with no system for reading what is actually there. Before you can prioritize, you have to see clearly, and before you can execute, you have to know what you are building on. The name is a reminder of what the work actually is, because you are not just making decisions in the moment, you are also building something that will last.</p>
+          </div>
+        </div>
+        <div>
+          <div class="story-body" style="padding-top:4.5rem;">
+            <p>Strata was founded in 2020 on a simple belief: leaders need a clear system for deciding what actually matters for their business or organization right now, and the focused execution to act on it.</p>
+            <p>We serve leaders of organizations and established business owners who have built something real and are navigating the complexity of what comes next.</p>
+            <p>Strata operates as a constellation of experienced practitioners and strategic partners across strategy, operations, finance, workforce development, technology, and business development. Depending on your situation, the right advisor or combination of advisors is engaged for your specific project, so you are getting relevant depth matched to your actual need rather than a generalist approach.</p>
+            <p>Our method is grounded in research on how decision capacity works under pressure, what depletes it, and what restores it. Every tool and engagement is built from that foundation.</p>
+          </div>
+          <br>
+          <button class="btn-outline-dark" onclick="showPage('resources')">See All Resources</button>
+        </div>
+      </div>
+
+      <!-- BOTTOM: Our Approach full-width -->
+      <div style="border-top:1px solid var(--border-light);padding-top:4rem;">
+        <div style="display:grid;grid-template-columns:1fr 2fr;gap:4rem;align-items:start;">
+          <div>
+            <span class="tag tag-navy">Our Approach</span>
+            <h2 style="font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--navy);font-weight:400;line-height:1.3;margin-top:1rem;">Structured support, <em style="font-style:italic;color:var(--gold-muted);">built for your situation.</em></h2>
+          </div>
+          <div class="story-body" style="padding-top:0.5rem;">
+            <p>Every Strata consultant engagement starts with understanding your specific situation. We use the Clarify, Prioritize, Execute method as the foundation, but the expertise you access depends on where you are and what you need.</p>
+            <p>For some clients that means strategic clarity work, building a decision framework and a focused roadmap. For others it means going deeper into a specific growth area, whether that is market positioning, operations, workforce strategy, or technology adoption.</p>
+            <br>
+            <button class="btn-outline-dark" onclick="showPage('contact')">Work With Strata</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- REGINA - CEO SECTION - light -->
+  <section style="background:var(--white);padding:6rem 5rem;">
+    <div style="max-width:1120px;margin:0 auto;">
+
+      <!-- The Research -->
+      <div style="display:grid;grid-template-columns:1fr 2fr;gap:5rem;align-items:start;">
+        <div>
+          <p style="font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold-muted);margin-bottom:0.75rem;">The Research</p>
+          <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--navy);font-weight:400;line-height:1.4;">The academic foundation behind the method.</h3>
+        </div>
+        <div>
+          <div class="story-body">
+            <p>Strata's research draws on real-life practice from advisors working with tech entrepreneurs on growth strategies, nonprofits developing community solutions, and organizational leaders navigating customer and operational decisions. That practical experience is combined with research across business, psychology, human development, and AI change management. The work starts from a specific belief: a leader's capacity to process information and make sound decisions is a business variable, and in a world of competing demands and constant change, that variable erodes in ways most strategy frameworks never account for.</p>
+            <p>McClusky's Theory of Margin is the primary research foundation. The theory describes organizational and individual functioning as a balance between two forces. Load is the total weight of demands on a leader or organization, including decisions that need to be made, competing priorities, operational pressure, and environmental change. Power is the total capacity available to meet those demands, including resources, systems, team strength, and the leader's own clarity. Margin is what remains when power exceeds load. When load grows faster than power, margin shrinks. When margin is gone, decision quality drops, execution slows, and leadership becomes reactive rather than intentional. Decision Overload is the name for that condition when it takes hold inside a business.</p>
+            <p>Additional frameworks from transformative learning and human development inform how Strata understands what changes during an engagement and what conditions allow leaders to build durable decision-making capacity rather than cycling back to the same patterns under pressure.</p>
+            <p>Most strategy frameworks address what decisions to make. Strata's research addresses what makes it possible to decide well in the first place. That is the distinction the method is built on.</p>
+          </div>
+          <br>
+          <button class="btn-outline-dark" onclick="showPage('contact')">Work With Strata</button>
+        </div>
+      </div>
+
+    </div>
+
+      <!-- Divider -->
+      <div style="height:1px;background:var(--border-light);margin-bottom:4rem;"></div>
+
+<div style="max-width:1120px;margin:0 auto;">
+
+      <!-- The Practice -->
+      <div style="display:grid;grid-template-columns:1fr 2fr;gap:5rem;align-items:start;margin-bottom:4rem;">
+        <div>
+          <span class="tag tag-navy">Leadership</span>
+          <h2 style="font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--navy);font-weight:400;line-height:1.3;margin-top:1rem;">
+            Regina N. Johnson, <em style="font-style:italic;">Founder and CEO.</em>
+          </h2>
+        </div>
+        <div>
+          <p style="font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold-muted);margin-bottom:1rem;">The Practice</p>
+          <p style="font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--navy);font-weight:400;line-height:1.4;margin-bottom:1.5rem;">Twenty years of building clarity out of complexity.</p>
+          <div class="story-body">
+            <p>In her current role leading technology ecosystem strategy, Regina has built programs reaching 10,000+ organizations and designed activation frameworks used across partner networks on three continents. The core skill underneath all of it is translating complicated, fast-moving environments into strategies people can actually act on.</p>
+            <p>Before her work in technology strategy, Regina has worked at the intersection of business, policy, workforce development, and economic development to unlock opportunities for entrepreneurs and changemakers. She has successfully designed and executed programs that expand capital access, accelerate business growth, and enhance ecosystem collaboration, ensuring small-to-medium-sized businesses effectively navigate and leverage the tech economy.</p>
+          </div>
+          <br>
+          <a href="https://www.linkedin.com/in/reginanjohnson" target="_blank" style="font-size:0.82rem;color:var(--gold-muted);text-decoration:none;border-bottom:1px solid var(--gold-muted);padding-bottom:2px;">View full background on LinkedIn →</a>
+        </div>
+      </div>
+
+
+
+    </div>
+  </section>
+
+  <!-- CRED BAR - dark -->
+  <div class="cred-bar">
+    <div class="cred-div"></div>
+<div class="cred-item">
+      <span class="cred-num">20+</span>
+      <span class="cred-label">Years in Business and Technology Strategy</span>
+    </div>
+    <div class="cred-div"></div>
+    <div class="cred-item">
+      <span class="cred-num">3</span>
+      <span class="cred-label">Sectors: Technology, Government, Economic Development</span>
+    </div>
+  </div>
+
+  <!-- TESTIMONIALS (moved from homepage) -->
+  <section style="background:var(--navy);padding:7rem 5rem;">
+    <div style="max-width:1120px;margin:0 auto;">
+      <span class="tag tag-gold">What People Say</span>
+      <h2 class="headline-serif" style="font-size:clamp(2rem,3vw,2.8rem);color:var(--white);max-width:640px;margin-bottom:1rem;">
+        From the people <em class="em-gold">who have seen the work.</em>
+      </h2>
+      <!-- CLIENT QUOTES -->
+      <div style="margin-bottom:3rem;">
+        
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.5rem;">
+          <div style="background:var(--navy-mid);border:1px solid rgba(255,255,255,0.06);padding:2.5rem;position:relative;">
+            <div style="position:absolute;top:-1px;left:2rem;width:2.5rem;height:3px;background:var(--gold);"></div>
+            <p style="font-family:'Playfair Display',serif;font-size:0.97rem;font-style:italic;color:var(--cream);line-height:1.8;margin-bottom:1.5rem;">"Strata helped us see what we were building more clearly than we could see it ourselves. The team organized our strategy, sharpened our positioning, and found the business development pathways we had been circling around. Our client base grew significantly as a result of the clarity they brought."</p>
+            <p style="font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);">M. Copeland</p>
+            <p style="font-size:0.8rem;color:var(--gray);">CEO, Workforce Development Practice</p>
+          </div>
+          <div style="background:var(--navy-mid);border:1px solid rgba(255,255,255,0.06);padding:2.5rem;position:relative;">
+            <div style="position:absolute;top:-1px;left:2rem;width:2.5rem;height:3px;background:var(--gold);"></div>
+            <p style="font-family:'Playfair Display',serif;font-size:0.97rem;font-style:italic;color:var(--cream);line-height:1.8;margin-bottom:1.5rem;">"Strata has a rare ability to help you focus on what actually matters in your business when everything around you is changing and competing for your attention. Regina brought structure to the process and helped me move forward. The work we did together gave me a roadmap I still rely on."</p>
+            <p style="font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);">R. Murphy</p>
+            <p style="font-size:0.8rem;color:var(--gray);">CEO, AI and Digital Literacy Futurist Agency</p>
+          </div>
+          <div style="background:var(--navy-mid);border:1px solid rgba(255,255,255,0.06);padding:2.5rem;position:relative;">
+            <div style="position:absolute;top:-1px;left:2rem;width:2.5rem;height:3px;background:var(--gold);"></div>
+            <p style="font-family:'Playfair Display',serif;font-size:0.97rem;font-style:italic;color:var(--cream);line-height:1.8;margin-bottom:1.5rem;">"Regina brings a level of strategic thinking to client work that is hard to find. She asks the right questions, listens carefully, and helps you build solutions that fit your actual situation. Any organization she works with gets better for it."</p>
+            <p style="font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);">T. Carter</p>
+            <p style="font-size:0.8rem;color:var(--gray);">CEO, Strategic Consulting Firm</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- LINKEDIN ENDORSEMENTS -->
+      
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div>
+      <div class="footer-logo">STRATA</div>
+      <div class="footer-tagline">Too many options, no clear priority, stalled action. We fix that.</div>
+    </div>
+    <ul class="footer-links">
+      <li><a onclick="showPage('home')">Home</a></li>
+      <li><a onclick="showPage('resources')">Resources</a></li>
+      <li><a onclick="showPage('about')">About</a></li>
+      <li><a onclick="showPage('contact')">Contact</a></li>
+    </ul>
+    <div style="font-size:0.75rem;color:var(--gray);">Founded by Regina N. Johnson</div>
+  </footer>
+</div>
+
+<!-- ════════════════════════════════
+     CONTACT PAGE
+════════════════════════════════ -->
+<div id="page-contact" class="page">
+
+  <section class="contact-hero">
+    <div class="contact-hero-inner">
+      <span class="tag tag-gold anim-1">Work With Strata</span>
+      <h1 class="headline-serif anim-2" style="font-size:clamp(2.4rem,4vw,3.4rem);color:var(--white);max-width:640px;line-height:1.2;">
+        Tell us what is<br><em class="em-gold">not moving.</em>
+      </h1>
+      <p class="anim-3" style="font-size:1.05rem;color:var(--gray-light);margin-top:1.5rem;max-width:560px;line-height:1.85;">Describe what you are navigating and where things have slowed or stopped. You will receive a personal response within 48 hours based on what you share, before any paid engagement begins.</p>
+    </div>
+  </section>
+
+  <section style="background:var(--light-bg);padding:5rem 5rem;">
+    <div style="max-width:1120px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:start;">
+
+      <div>
+        <form onsubmit="return false;" style="display:flex;flex-direction:column;gap:1.2rem;">
+          <div>
+            <label style="font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gray);display:block;margin-bottom:0.5rem;">Your Name</label>
+            <input type="text" placeholder="First and last name" style="width:100%;padding:0.85rem 1rem;border:1px solid var(--border-light);background:var(--white);font-size:0.92rem;color:var(--navy);border-radius:4px;">
+          </div>
+          <div>
+            <label style="font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gray);display:block;margin-bottom:0.5rem;">Email Address</label>
+            <input type="email" placeholder="you@yourbusiness.com" style="width:100%;padding:0.85rem 1rem;border:1px solid var(--border-light);background:var(--white);font-size:0.92rem;color:var(--navy);border-radius:4px;">
+          </div>
+          <div>
+            <label style="font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gray);display:block;margin-bottom:0.5rem;">Your Business</label>
+            <input type="text" placeholder="What you do and roughly how long you have been doing it" style="width:100%;padding:0.85rem 1rem;border:1px solid var(--border-light);background:var(--white);font-size:0.92rem;color:var(--navy);border-radius:4px;">
+          </div>
+          <div>
+            <label style="font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gray);display:block;margin-bottom:0.5rem;">What Feels Most Stuck or Unclear in Your Business Right Now?</label>
+            <textarea rows="5" placeholder="Describe the situation in your own words. What have you tried? How long has this been going on?" style="width:100%;padding:0.85rem 1rem;border:1px solid var(--border-light);background:var(--white);font-size:0.92rem;color:var(--navy);border-radius:4px;resize:vertical;"></textarea>
+          </div>
+          <button type="submit" class="btn-primary-dark" style="margin-top:0.5rem;">Send Your Message</button>
+          <p style="font-size:0.75rem;color:var(--gray);line-height:1.6;">Every message is read personally. You will receive a response within 48 hours.</p>
+        </form>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:2rem;">
+
+        <div>
+          <p style="font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold-muted);margin-bottom:0.75rem;">Not ready to reach out yet?</p>
+          <p style="font-size:1rem;color:var(--navy);line-height:1.75;margin-bottom:1rem;">Start with the resources. The free Decision Overload Self-Diagnosis and the Clarity Blueprint workbook are built to give you traction before you need anyone else involved.</p>
+          <button class="btn-outline-dark" onclick="showPage('resources')">See All Resources</button>
+        </div>
+
+        <div style="border-top:1px solid var(--border-light);padding-top:2rem;">
+          <p style="font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold-muted);margin-bottom:0.75rem;">Or take the free assessment first</p>
+          <p style="font-size:1rem;color:var(--navy);line-height:1.75;margin-bottom:1rem;">The Strata Assessment takes under 3 minutes and gives you a personalized read on your specific situation before you reach out.</p>
+          <a href="/assessment" style="display:inline-block;font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold-muted);text-decoration:none;border-bottom:1px solid var(--gold-muted);padding-bottom:2px;">Take the free assessment</a>
+        </div>
+
+        <div style="border-top:1px solid var(--border-light);padding-top:2rem;">
+          <p style="font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold-muted);margin-bottom:0.75rem;">General Inquiries</p>
+          <p style="font-size:0.92rem;color:var(--navy);line-height:1.75;margin-bottom:0.5rem;">For questions before reaching out through the form:</p>
+          <a href="mailto:info@stratamethod.com" style="font-size:0.85rem;color:var(--gold-muted);text-decoration:none;border-bottom:1px solid var(--gold-muted);padding-bottom:2px;">info@stratamethod.com</a>
+        </div>
+
+        <div style="border-top:1px solid var(--border-light);padding-top:2rem;">
+          <p style="font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold-muted);margin-bottom:0.75rem;">Read More</p>
+          <p style="font-size:0.92rem;color:var(--navy);line-height:1.75;margin-bottom:0.5rem;">Regina publishes on Substack on decision-making, strategy, and what it actually takes to lead through complexity.</p>
+          <a href="https://substack.com/@reginanjohnson" target="_blank" style="font-size:0.85rem;color:var(--gold-muted);text-decoration:none;border-bottom:1px solid var(--gold-muted);padding-bottom:2px;">Read on Substack →</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div>
+      <div class="footer-logo">STRATA</div>
+      <div class="footer-tagline">Too many options, no clear priority, stalled action. We fix that.</div>
+    </div>
+    <ul class="footer-nav">
+      <li><a onclick="showPage('home')">Home</a></li>
+      <li><a onclick="showPage('resources')">Resources</a></li>
+      <li><a onclick="showPage('about')">About</a></li>
+      <li><a onclick="showPage('contact')">Contact</a></li>
+    </ul>
+    <div style="font-size:0.75rem;color:var(--gray);">Founded by Regina N. Johnson</div>
+  </footer>
+</div>
+
+<script>
+  function openModal() {
+    const modal = document.getElementById('email-modal');
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    const modal = document.getElementById('email-modal');
+    modal.style.display = 'none';
+    document.body.style.overflow = '';
+  }
+
+  function handleEmailCapture(e) {
+    e.preventDefault();
+    const btn = document.getElementById('modal-btn');
+    btn.textContent = 'Check your inbox — on its way now';
+    btn.style.background = 'var(--gold-muted)';
+    btn.disabled = true;
+    setTimeout(() => closeModal(), 2500);
+    // In production connect to your email service (Mailchimp, ConvertKit, etc.)
+  }
+
+  // Close modal on background click
+  document.addEventListener('click', (e) => {
+    if (e.target.id === 'email-modal') closeModal();
+  });
+
+  function showPage(name) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById('page-' + name).classList.add('active');
+    document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+    const el = document.getElementById('nav-' + name);
+    if (el) el.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function toggleDetails(id, btn) {
+    const panel = document.getElementById(id);
+    const arrow = btn.querySelector('.toggle-arrow');
+    const isOpen = panel.classList.contains('open');
+    panel.classList.toggle('open', !isOpen);
+    arrow.classList.toggle('open', !isOpen);
+    btn.querySelector('span:first-child').textContent = isOpen
+      ? 'See pricing and engagement details'
+      : 'Hide details';
+    // fix for flagship card
+    if (id === 'path-details') {
+      btn.querySelector('span:first-child').textContent = isOpen
+        ? 'See pricing, phases, and what you walk away with'
+        : 'Hide details';
+    }
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = document.getElementById('submit-btn');
+    btn.textContent = 'Submitted — Your assessment is on its way within 48 hours';
+    btn.style.background = 'var(--gold-muted)';
+    btn.disabled = true;
+  }
+
+  window.addEventListener('scroll', () => {
+    const nav = document.querySelector('nav');
+    nav.style.borderBottomColor = window.scrollY > 40
+      ? 'rgba(201,168,76,0.3)' : 'rgba(201,168,76,0.2)';
+  });
+</script>
+</body>
+</html>
