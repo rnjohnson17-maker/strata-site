@@ -438,16 +438,9 @@ Return only valid JSON in this exact format:
   }
 }
 
-function showEmail() {
-  document.getElementById('email-form').style.display = 'block';
-}
 
-function submitEmail() {
-  const val = document.getElementById('email-input').value.trim();
-  if (!val || !val.includes('@')) return;
-  document.getElementById('email-form').style.display = 'none';
-  document.getElementById('email-confirm').style.display = 'block';
-}
+
+
 </script>
 </body>
 </html>
